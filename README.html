@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa de Apostas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Casa de Apostas</h1>
+        <form id="bet-form">
+            <label for="event">Evento:</label>
+            <input type="text" id="event" name="event" required>
+            
+            <label for="bet">Aposta (em reais):</label>
+            <input type="number" id="bet" name="bet" required>
+
+            <button type="submit">Fazer Aposta</button>
+        </form>
+        <div id="results">
+            <h2>Resultados</h2>
+            <ul id="bet-list"></ul>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: calc(100% - 10px);
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#results {
+    text-align: left;
+}
+
+#bet-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#bet-list li {
+    background-color: #e9e9e9;
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+document.getElementById('bet-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const eventInput = document.getElementById('event').value;
+    const betInput = document.getElementById('bet').value;
+
+    const betList = document.getElementById('bet-list');
+    const newBet = document.createElement('li');
+    newBet.textContent = `Evento: ${eventInput}, Aposta: R$${betInput}`;
+
+    betList.appendChild(newBet);
+
+    document.getElementById('bet-form').reset();
+});
